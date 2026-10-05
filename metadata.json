@@ -1,0 +1,6 @@
+{
+  "name": "SmartEarn - منصة المهام والأرباح الذكية",
+  "description": "منصة مهام وربح وإحالات متكاملة (GPT Platform) مع نظام مستويات، محفظة إلكترونية، وإدارة سحب ومراقبة أمان متقدمة.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

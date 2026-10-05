@@ -1,0 +1,86 @@
+{
+  "rules": {
+    "users": {
+      ".read": "auth != null",
+      "$uid": {
+        ".read": "auth != null",
+        ".write": "auth != null && (auth.uid === $uid || auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin')",
+        
+        "balance": {
+          ".validate": "auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin' || !data.exists() || newData.val() <= data.val() || (auth.uid === $uid && newData.isNumber())"
+        },
+        "points": {
+          ".validate": "auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin' || !data.exists() || (auth.uid === $uid && newData.isNumber())"
+        },
+        "role": {
+          ".validate": "auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'superadmin' || (!data.exists() && (newData.val() === 'user' || auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com'))"
+        },
+        "accountStatus": {
+          ".validate": "auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin' || (!data.exists() && newData.val() === 'active')"
+        }
+      }
+    },
+    "presence": {
+      ".read": "auth != null",
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid"
+      }
+    },
+    "tasks": {
+      ".read": "auth != null",
+      ".write": "auth != null && (auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin')"
+    },
+    "taskCompletions": {
+      ".read": "auth != null",
+      "$completionId": {
+        ".write": "auth != null && (!data.exists() && newData.child('userId').val() === auth.uid)"
+      }
+    },
+    "transactions": {
+      ".read": "auth != null",
+      "$txId": {
+        ".write": "auth != null"
+      }
+    },
+    "withdrawals": {
+      ".read": "auth != null",
+      "$withdrawalId": {
+        ".write": "auth != null && (auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin' || (!data.exists() && newData.child('userId').val() === auth.uid))"
+      }
+    },
+    "referrals": {
+      ".read": "auth != null",
+      ".write": "auth != null"
+    },
+    "notifications": {
+      ".read": "auth != null",
+      "$notifId": {
+        ".write": "auth != null && (newData.child('userId').val() === auth.uid || data.child('userId').val() === auth.uid || auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com')"
+      }
+    },
+    "loginLogs": {
+      ".read": "auth != null && (auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin')",
+      ".write": "auth != null"
+    },
+    "activityLogs": {
+      ".read": "auth != null && (auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin')",
+      ".write": "auth != null"
+    },
+    "settings": {
+      ".read": true,
+      ".write": "auth != null && (auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin')"
+    },
+    "levels": {
+      ".read": true,
+      ".write": "auth != null && (auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin')"
+    },
+    "paymentMethods": {
+      ".read": true,
+      ".write": "auth != null && (auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin')"
+    },
+    "fraudAlerts": {
+      ".read": "auth != null && (auth.token.email === 'cybenode.site@gmail.com' || auth.token.email === 'support.cybenode.site@gmail.com' || auth.token.email === '7oud3.dev@gmail.com' || root.child('users').child(auth.uid).child('role').val() === 'admin' || root.child('users').child(auth.uid).child('role').val() === 'superadmin')",
+      ".write": "auth != null"
+    }
+  }
+}
